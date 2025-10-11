@@ -47,5 +47,5 @@ app.use('/api/address', addressRouter);
 app.use('/api/order', orderRouter);
 
 app.listen(port, () => {
-    console.log(`PORT connected on ${port}`);
+    console.log(`server is listining on port ${port}`);
 })
