@@ -13,32 +13,26 @@ import orderRouter from './routes/orderRoute.js';
 import { stripeWebhooks } from './controllers/orderController.js';
 
 const app = express();
-
 const port = process.env.PORT || 8000;
+
 await connectDB();
 await connectCloudinary();
 
-// Allow multiple origins
-const allowedOrigins = ['http://localhost:5173', 'https://greencart-sand.vercel.app'];
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://greencart-ca8b.vercel.app'
+  ],
+  credentials: true
+}));
 
-app.post('/stripe', express.raw({type: 'application/json'}), stripeWebhooks);
-
-// Middleware Configuration
-app.use(express.json()); 
+app.use(express.json());
 app.use(cookieParser());
-app.use((req, res, next) => {
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.header('Access-Control-Allow-Origin', origin); // dynamically set origin
-    }
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
 
+app.post('/stripe', express.raw({ type: 'application/json' }), stripeWebhooks);
 
 app.get('/', (req, res) => res.send('API is working!'));
+
 app.use('/api/user', userRouter);
 app.use('/api/seller', sellerRouter);
 app.use('/api/product', productRouter);
@@ -47,5 +41,5 @@ app.use('/api/address', addressRouter);
 app.use('/api/order', orderRouter);
 
 app.listen(port, () => {
-    console.log(`server is listining on port ${port}`);
-})
+  console.log(`🚀 Server is running on port ${port}`);
+});
