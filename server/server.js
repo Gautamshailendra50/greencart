@@ -18,11 +18,9 @@ const port = process.env.PORT || 8000;
 await connectDB();
 await connectCloudinary();
 
+// ✅ FIXED CORS (IMPORTANT)
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://greencart-ca8b.vercel.app'
-  ],
+  origin: true,   // 🔥 allow all (vercel preview + production)
   credentials: true
 }));
 
