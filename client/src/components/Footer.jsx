@@ -21,7 +21,6 @@ function Footer() {
             <a href="#" className="hover:-translate-y-0.5 transition-all duration-300 text-purple-600" > <FaInstagram /> </a>
             <a href="#" className="hover:-translate-y-0.5 transition-all duration-300 text-blue-400" > <FaLinkedinIn /> </a>
             <a href="#" className="hover:-translate-y-0.5 transition-all duration-300 text-sky-500" > <FaTwitter /> </a>
-            <a href="#" className="hover:-translate-y-0.5 transition-all duration-300 text-gray-700" > <FaGithub /> </a>
         </div>
     </footer>
   );
